@@ -1,0 +1,21 @@
+case_id,surgery_date,or_room,scheduled_start,actual_start,delay_minutes,day_of_week,delay_reason,surgeon_id,procedure_type,case_duration_min
+1001,2024-01-08,OR_1,07:30:00,07:53:00,23,Monday,Equipment Not Ready,DR_SMITH,General Surgery,120
+1002,2024-01-08,OR_2,07:30:00,07:42:00,12,Monday,Staff Not Ready,DR_JONES,Orthopedic,180
+1003,2024-01-08,OR_3,07:30:00,07:31:00,1,Monday,None,DR_WILLIAMS,ENT,90
+1004,2024-01-09,OR_1,07:30:00,07:48:00,18,Tuesday,Patient Not Ready,DR_SMITH,General Surgery,150
+1005,2024-01-09,OR_2,07:30:00,07:35:00,5,Tuesday,None,DR_BROWN,Cardiac,240
+1006,2024-01-09,OR_3,07:30:00,08:05:00,35,Tuesday,Anesthesia Delay,DR_JONES,Orthopedic,180
+1007,2024-01-10,OR_1,07:30:00,07:45:00,15,Wednesday,Equipment Not Ready,DR_DAVIS,Neurosurgery,300
+1008,2024-01-10,OR_2,07:30:00,07:38:00,8,Wednesday,None,DR_WILLIAMS,ENT,60
+1009,2024-01-10,OR_3,07:30:00,07:52:00,22,Wednesday,Staff Not Ready,DR_SMITH,General Surgery,120
+1010,2024-01-11,OR_1,07:30:00,07:33:00,3,Thursday,None,DR_JONES,Orthopedic,150
+1011,2024-01-11,OR_2,07:30:00,07:41:00,11,Thursday,Equipment Not Ready,DR_BROWN,Cardiac,210
+1012,2024-01-11,OR_3,07:30:00,07:30:00,0,Thursday,None,DR_DAVIS,Neurosurgery,180
+1013,2024-01-12,OR_1,07:30:00,07:55:00,25,Friday,Surgeon Late,DR_WILLIAMS,ENT,90
+1014,2024-01-12,OR_2,07:30:00,07:47:00,17,Friday,Patient Not Ready,DR_SMITH,General Surgery,120
+1015,2024-01-12,OR_3,07:30:00,08:12:00,42,Friday,Equipment Not Ready,DR_JONES,Orthopedic,240
+1016,2024-01-15,OR_1,07:30:00,08:15:00,45,Monday,Multiple Issues,DR_BROWN,Cardiac,300
+1017,2024-01-15,OR_2,07:30:00,07:58:00,28,Monday,Equipment Not Ready,DR_DAVIS,Neurosurgery,240
+1018,2024-01-15,OR_3,07:30:00,07:36:00,6,Monday,None,DR_WILLIAMS,ENT,75
+1019,2024-01-16,OR_1,07:30:00,07:44:00,14,Tuesday,Staff Not Ready,DR_SMITH,General Surgery,135
+1020,2024-01-16,OR_2,07:30:00,07:32:00,2,Tuesday,None,DR_JONES,Orthopedic,165
