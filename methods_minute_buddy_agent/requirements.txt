@@ -1,0 +1,26 @@
+# Buddy Agent Toolkit Requirements
+
+# Core dependencies
+google-generativeai-cli>=0.1.0  # Gemini CLI
+click>=8.0.0                    # CLI framework
+rich>=10.0.0                    # Pretty console output
+
+# Data processing
+pandas>=1.3.0                   # Data manipulation
+sqlparse>=0.4.0                 # SQL parsing and formatting
+
+# Healthcare-specific
+hl7>=0.4.0                      # HL7 message parsing (optional)
+fhir.resources>=6.0.0           # FHIR resources (optional)
+
+# Development tools
+pytest>=6.0.0                   # Testing
+black>=21.0.0                   # Code formatting
+flake8>=3.9.0                   # Linting
+
+# Optional integrations
+# Uncomment based on your needs:
+# psycopg2-binary>=2.9.0        # PostgreSQL
+# pyodbc>=4.0.0                 # SQL Server
+# cx-Oracle>=8.0.0              # Oracle
+# snowflake-connector-python>=2.7.0  # Snowflake
