@@ -1,0 +1,60 @@
+# Traditional Data Movement - Simple Newsletter Version
+
+title: "The Old Way: Moving Data Between Systems" {
+  style: {
+    font-size: 20
+    fill: "#2c3e50"
+  }
+}
+
+# Simple system boxes in a row
+hospital_a: "Hospital A EHR" {
+  shape: rectangle
+  style: {
+    fill: "#ecf0f1"
+    stroke: "#34495e"
+    stroke-width: 2
+  }
+}
+
+hospital_b: "Hospital B EHR" {
+  shape: rectangle
+  style: {
+    fill: "#ecf0f1"
+    stroke: "#34495e"
+    stroke-width: 2
+  }
+}
+
+payer: "Payer System" {
+  shape: rectangle
+  style: {
+    fill: "#ecf0f1"
+    stroke: "#34495e"
+    stroke-width: 2
+  }
+}
+
+research: "Research DB" {
+  shape: rectangle
+  style: {
+    fill: "#ecf0f1"
+    stroke: "#34495e"
+    stroke-width: 2
+  }
+}
+
+# Simple data flow arrows
+hospital_a -> hospital_b: "PHI Copies"
+hospital_a -> payer: "PHI Copies"
+hospital_a -> research: "PHI Copies"
+
+# Simple problem summary
+problems: "Problems:\n• High cost & complexity\n• Security risks\n• Data duplication\n• 6-18 month timelines" {
+  shape: rectangle
+  style: {
+    fill: "#fdf2e9"
+    stroke: "#e74c3c"
+    stroke-width: 2
+  }
+} 

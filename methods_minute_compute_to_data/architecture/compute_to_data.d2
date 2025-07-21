@@ -1,0 +1,150 @@
+# Compute-to-Data - Creative Architecture Version
+
+# Use default dagre layout engine (most compatible)
+vars: {
+  d2-config: {
+    layout-engine: dagre
+  }
+}
+
+title: "The New Way: Moving Compute to Data" {
+  style: {
+    font-size: 20
+    fill: "#2c3e50"
+  }
+}
+
+# Data sources in a more architectural layout
+data_sources: {
+  hospital_a: "🏥 Hospital A EHR" {
+    shape: rectangle
+    style: {
+      fill: "#ecf0f1"
+      stroke: "#34495e"
+      stroke-width: 2
+    }
+  }
+  
+  hospital_b: "🏥 Hospital B EHR" {
+    shape: rectangle
+    style: {
+      fill: "#ecf0f1"
+      stroke: "#34495e"
+      stroke-width: 2
+    }
+  }
+  
+  payer: "💳 Payer System" {
+    shape: rectangle
+    style: {
+      fill: "#ecf0f1"
+      stroke: "#34495e"
+      stroke-width: 2
+    }
+  }
+  
+  research: "🔬 Research DB" {
+    shape: rectangle
+    style: {
+      fill: "#ecf0f1"
+      stroke: "#34495e"
+      stroke-width: 2
+    }
+  }
+}
+
+# Compute functions as floating elements
+compute_functions: {
+  compute_a: "⚡ Compute Function" {
+    shape: rectangle
+    style: {
+      fill: "#27ae60"
+      stroke: "#229954"
+      stroke-width: 2
+    }
+  }
+  
+  compute_b: "⚡ Compute Function" {
+    shape: rectangle
+    style: {
+      fill: "#27ae60"
+      stroke: "#229954"
+      stroke-width: 2
+    }
+  }
+  
+  compute_payer: "⚡ Compute Function" {
+    shape: rectangle
+    style: {
+      fill: "#27ae60"
+      stroke: "#229954"
+      stroke-width: 2
+    }
+  }
+  
+  compute_research: "⚡ Compute Function" {
+    shape: rectangle
+    style: {
+      fill: "#27ae60"
+      stroke: "#229954"
+      stroke-width: 2
+    }
+  }
+}
+
+# Deploy arrows with better styling
+compute_functions.compute_a -> data_sources.hospital_a: "🚀 Deploy" {
+  style: {
+    stroke: "#27ae60"
+    stroke-width: 2
+  }
+}
+
+compute_functions.compute_b -> data_sources.hospital_b: "🚀 Deploy" {
+  style: {
+    stroke: "#27ae60"
+    stroke-width: 2
+  }
+}
+
+compute_functions.compute_payer -> data_sources.payer: "🚀 Deploy" {
+  style: {
+    stroke: "#27ae60"
+    stroke-width: 2
+  }
+}
+
+compute_functions.compute_research -> data_sources.research: "🚀 Deploy" {
+  style: {
+    stroke: "#27ae60"
+    stroke-width: 2
+  }
+}
+
+# Results aggregation with creative positioning
+results_center: "📊 Results Only" {
+  shape: rectangle
+  style: {
+    fill: "#e8f5e8"
+    stroke: "#27ae60"
+    stroke-width: 3
+  }
+}
+
+# Benefits in an architectural callout
+benefits: "✅ Benefits:\n• Data never moves\n• Real-time processing\n• Lower costs\n• Deploy in days" {
+  shape: rectangle
+  style: {
+    fill: "#e8f5e8"
+    stroke: "#27ae60"
+    stroke-width: 2
+  }
+}
+
+# Connect results to benefits
+results_center -> benefits: "Aggregate" {
+  style: {
+    stroke: "#27ae60"
+    stroke-width: 2
+  }
+} 
