@@ -1,0 +1,150 @@
+{
+  "dashboard": {
+    "title": "Prior Authorization Operations Dashboard",
+    "description": "Real-time monitoring of PA processing efficiency and costs",
+    "refresh_interval": "15_minutes",
+    "filters": [
+      {
+        "name": "date_range",
+        "type": "date_range",
+        "default": "last_30_days"
+      },
+      {
+        "name": "submission_method",
+        "type": "multi_select",
+        "options": ["FAX", "PHONE", "PORTAL", "API", "AI_AUTOMATED"]
+      },
+      {
+        "name": "service_category",
+        "type": "multi_select",
+        "options": ["IMAGING", "SURGERY", "DME", "SPECIALTY_DRUGS", "THERAPY"]
+      }
+    ],
+    "metrics": [
+      {
+        "id": "total_volume",
+        "name": "Total PA Volume",
+        "type": "big_number",
+        "query": "SELECT COUNT(*) FROM prior_authorizations WHERE {filters}",
+        "format": "number",
+        "trend": "month_over_month"
+      },
+      {
+        "id": "avg_cost_per_pa",
+        "name": "Average Cost per PA",
+        "type": "big_number",
+        "query": "SELECT AVG(processing_cost) FROM pa_cost_metrics WHERE {filters}",
+        "format": "currency",
+        "target": 3.50,
+        "color_rules": {
+          "green": "< 5",
+          "yellow": "5-10",
+          "red": "> 10"
+        }
+      },
+      {
+        "id": "automation_rate",
+        "name": "Automation Rate",
+        "type": "big_number",
+        "query": "SELECT SUM(CASE WHEN submission_method IN ('API', 'AI_AUTOMATED') THEN 1 ELSE 0 END)::FLOAT / COUNT(*) * 100 FROM prior_authorizations WHERE {filters}",
+        "format": "percentage",
+        "target": 80,
+        "trend": "week_over_week"
+      },
+      {
+        "id": "avg_processing_time",
+        "name": "Avg Processing Time",
+        "type": "big_number",
+        "query": "SELECT AVG(processing_hours) FROM prior_authorizations WHERE {filters}",
+        "format": "hours",
+        "target": 4,
+        "color_rules": {
+          "green": "< 4",
+          "yellow": "4-12",
+          "red": "> 12"
+        }
+      }
+    ],
+    "charts": [
+      {
+        "id": "volume_by_method",
+        "name": "PA Volume by Submission Method",
+        "type": "stacked_bar",
+        "x_axis": "date",
+        "y_axis": "volume",
+        "series": "submission_method",
+        "query": "SELECT DATE_TRUNC('day', created_date) as date, submission_method, COUNT(*) as volume FROM prior_authorizations WHERE {filters} GROUP BY 1, 2"
+      },
+      {
+        "id": "cost_trend",
+        "name": "Cost per PA Trend",
+        "type": "line",
+        "x_axis": "week",
+        "y_axis": "avg_cost",
+        "series": "submission_method",
+        "query": "SELECT DATE_TRUNC('week', created_date) as week, submission_method, AVG(processing_cost) as avg_cost FROM pa_cost_metrics WHERE {filters} GROUP BY 1, 2"
+      },
+      {
+        "id": "approval_rates",
+        "name": "Approval Rates by Service",
+        "type": "horizontal_bar",
+        "x_axis": "approval_rate",
+        "y_axis": "service_category",
+        "query": "SELECT service_category, SUM(CASE WHEN status = 'APPROVED' THEN 1 ELSE 0 END)::FLOAT / COUNT(*) * 100 as approval_rate FROM prior_authorizations WHERE {filters} GROUP BY 1 ORDER BY 2 DESC"
+      },
+      {
+        "id": "processing_time_distribution",
+        "name": "Processing Time Distribution",
+        "type": "histogram",
+        "x_axis": "processing_hours",
+        "bins": 20,
+        "query": "SELECT processing_hours FROM prior_authorizations WHERE {filters} AND processing_hours < 100"
+      }
+    ],
+    "tables": [
+      {
+        "id": "top_denial_reasons",
+        "name": "Top Denial Reasons",
+        "columns": [
+          {"name": "Denial Reason", "field": "denial_reason"},
+          {"name": "Count", "field": "count", "format": "number"},
+          {"name": "Appeal Rate", "field": "appeal_rate", "format": "percentage"},
+          {"name": "Overturn Rate", "field": "overturn_rate", "format": "percentage"}
+        ],
+        "query": "SELECT denial_reason, COUNT(*) as count, AVG(appeal_flag) * 100 as appeal_rate, AVG(CASE WHEN appeal_flag = 1 THEN appeal_overturned ELSE NULL END) * 100 as overturn_rate FROM prior_authorizations WHERE status = 'DENIED' AND {filters} GROUP BY 1 ORDER BY 2 DESC LIMIT 10"
+      },
+      {
+        "id": "provider_performance",
+        "name": "Provider Performance Summary",
+        "columns": [
+          {"name": "Provider", "field": "provider_name"},
+          {"name": "PA Volume", "field": "volume", "format": "number"},
+          {"name": "Approval Rate", "field": "approval_rate", "format": "percentage"},
+          {"name": "Avg Time", "field": "avg_time", "format": "hours"},
+          {"name": "Gold Card Status", "field": "gold_card_status"}
+        ],
+        "query": "SELECT p.provider_name, COUNT(*) as volume, AVG(CASE WHEN pa.status = 'APPROVED' THEN 1 ELSE 0 END) * 100 as approval_rate, AVG(pa.processing_hours) as avg_time, p.gold_card_status FROM prior_authorizations pa JOIN providers p ON pa.provider_id = p.provider_id WHERE {filters} GROUP BY 1, 5 ORDER BY 2 DESC LIMIT 20"
+      }
+    ],
+    "alerts": [
+      {
+        "name": "High Manual Volume",
+        "condition": "manual_percentage > 70",
+        "message": "Manual PA processing exceeds 70% - automation opportunity",
+        "severity": "warning"
+      },
+      {
+        "name": "Cost Spike",
+        "condition": "avg_cost_per_pa > 12",
+        "message": "Average PA cost exceeds $12 - investigate processing inefficiencies",
+        "severity": "critical"
+      },
+      {
+        "name": "Processing Delays",
+        "condition": "avg_processing_time > 24",
+        "message": "Average processing time exceeds 24 hours - SLA at risk",
+        "severity": "critical"
+      }
+    ]
+  }
+}
