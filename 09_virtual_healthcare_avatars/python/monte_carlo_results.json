@@ -1,0 +1,53 @@
+{
+  "metadata": {
+    "simulation_date": "2025-08-26T21:59:48.812012",
+    "n_simulations": 10000,
+    "random_seed": 42
+  },
+  "statistics": {
+    "roi": {
+      "mean": 130.91378292924318,
+      "median": 129.2185401703718,
+      "std": 37.13247474496786,
+      "ci_95_lower": 63.764951493662046,
+      "ci_95_upper": 207.72790612738237,
+      "probability_positive": 1.0,
+      "probability_over_100": 0.7911,
+      "probability_over_150": 0.298,
+      "probability_over_200": 0.0383
+    },
+    "payback": {
+      "mean": 5.5345768070672445,
+      "median": 5.142979885651348,
+      "ci_95_lower": 3.117783382109567,
+      "ci_95_upper": 10.246181804062875,
+      "probability_under_12": 0.9888,
+      "probability_under_18": 0.9987,
+      "probability_under_24": 0.9995
+    },
+    "npv": {
+      "mean": 1267876.8926318078,
+      "median": 1266697.3418254799,
+      "std": 309852.5277766829,
+      "ci_95_lower": 662230.9471880592,
+      "ci_95_upper": 1884730.657552639,
+      "probability_positive": 1.0,
+      "probability_over_500k": 0.9945,
+      "probability_over_1m": 0.8068
+    },
+    "benefit_cost_ratio": {
+      "mean": 2.309137829292432,
+      "median": 2.292185401703718,
+      "probability_over_2": 0.7911
+    }
+  },
+  "summary": {
+    "roi_mean": "130.9%",
+    "roi_median": "129.2%",
+    "roi_95_ci": "[63.8%, 207.7%]",
+    "probability_positive_roi": "100.0%",
+    "payback_median": "5.1 months",
+    "npv_median": "$1,266,697",
+    "probability_npv_over_1m": "80.7%"
+  }
+}
