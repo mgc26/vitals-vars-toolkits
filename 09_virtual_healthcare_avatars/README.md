@@ -136,8 +136,8 @@ For questions about this toolkit:
 ## Updates
 
 This toolkit is updated quarterly based on new evidence. 
-Last update: 2024 Q4
-Next update: 2025 Q1
+Last update: 2025 Q2
+
 
 ---
 
