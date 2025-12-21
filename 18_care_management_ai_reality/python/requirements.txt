@@ -1,0 +1,13 @@
+# Requirements for Care Management Friction Analysis Toolkit
+# Vitals & Variables Edition 18
+
+# Core data analysis
+pandas>=1.5.0
+numpy>=1.21.0
+
+# Optional: visualization (if generating charts)
+matplotlib>=3.5.0
+seaborn>=0.12.0
+
+# Optional: for Excel export
+openpyxl>=3.0.0
