@@ -17,6 +17,10 @@ Each folder represents a newsletter issue with ready-to-use resources:
 Boost your OR's first-case on-time performance from 65% to 85%+
 - [View Toolkit →](./01_or_first_start_delay)
 
+### 📊 Issue #29: What a Viral Hospital Margin Ranking Actually Measures
+The open dataset behind the Q1 2026 margin analysis: 40 health systems by 38 columns (financials, ownership, payer mix, digital maturity). Re-cut the 28.6-point spread yourself and see what it actually measures.
+- [View Toolkit →](./29_hospital_margin_ranking)
+
 *More issues coming soon!*
 
 ## How to Use

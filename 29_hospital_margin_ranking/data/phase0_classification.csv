@@ -1,0 +1,41 @@
+rank,system_name,census_region,ownership,faith_tradition,archetype,plan_materiality,plan_verify,plan_note,medicaid_expansion_hq,national_operator_flag
+1,"Tenet Healthcare",South,for-profit,none,"National for-profit operator (+USPI ambulatory)",none,N,"",N,Y
+2,"HCA Healthcare",South,for-profit,none,"National for-profit operator",none,N,"",N,Y
+3,"Universal Health Services",Northeast,for-profit,none,"National for-profit operator (acute + behavioral)",none,N,"",Y,Y
+4,"BayCare Health System",South,nonprofit,none,"Secular regional IDN",none,N,"",N,N
+5,"NewYork-Presbyterian",Northeast,nonprofit,none,"Academic medical center (Columbia/Weill Cornell)",none,N,"",Y,N
+6,"Community Health Systems",South,for-profit,none,"National for-profit operator",none,N,"",N,Y
+7,"AdventHealth",South,nonprofit,Adventist,"Faith-based system",minor,Y,"",N,Y
+8,"Baylor Scott & White Health",South,nonprofit,none,"Secular regional IDN (Baptist heritage)",material,N,"S&W Health Plan",N,N
+9,"Mayo Clinic",Midwest,nonprofit,none,"Academic medical center",minor,Y,"",Y,Y
+10,"ProMedica",Midwest,nonprofit,none,"Secular regional IDN",minor,Y,"Paramount reportedly divested ~2024",Y,N
+11,"RWJBarnabas Health",Northeast,nonprofit,none,"Secular regional IDN (Rutgers academic affil.)",none,N,"",Y,N
+12,"Intermountain Health",West,nonprofit,none,"Integrated payer-provider (SelectHealth)",material,N,"",Y,Y
+13,"Inova Health System",South,nonprofit,none,"Secular regional IDN",minor,Y,"",Y,N
+14,"HonorHealth",West,nonprofit,none,"Secular regional IDN",none,N,"",Y,N
+15,"Sanford Health",Midwest,nonprofit,none,"Integrated payer-provider (Sanford Health Plan)",material,N,"",Y,N
+16,"Corewell Health",Midwest,nonprofit,none,"Integrated payer-provider (Priority Health)",material,N,"ex-Beaumont/Spectrum",Y,N
+17,"Advocate Health",South,nonprofit,none,"Secular regional IDN (Wake Forest academic)",minor,Y,"",Y,Y
+18,"Cleveland Clinic",Midwest,nonprofit,none,"Academic medical center",none,N,"",Y,N
+19,"Banner Health",West,nonprofit,none,"Integrated payer-provider (Banner-Aetna; Banner plans)",material,N,"",Y,N
+20,"UPMC",Northeast,nonprofit,none,"Academic medical center + integrated payer-provider",material,N,"large insurance arm",Y,N
+21,"Orlando Health",South,nonprofit,none,"Secular regional IDN",none,N,"",N,N
+22,"Novant Health",South,nonprofit,none,"Secular regional IDN",none,N,"",Y,N
+23,"Northwell Health",Northeast,nonprofit,none,"Academic medical center (Zucker/Hofstra)",none,N,"closed CareConnect 2017",Y,N
+24,"Bon Secours Mercy Health",Midwest,nonprofit,Catholic,"Faith-based system",none,N,"",Y,Y
+25,"BJC Health System",Midwest,nonprofit,none,"Academic medical center (WashU)",none,N,"",Y,N
+26,"Kaiser Permanente",West,nonprofit,none,"Integrated payer-provider (archetype)",material,N,"core business model",Y,Y
+27,"Sutter Health",West,nonprofit,none,"Secular regional IDN (+ Sutter Health Plus)",minor,N,"",Y,N
+28,"Providence",West,nonprofit,Catholic,"Faith-based system (+ Providence Health Plan)",material,N,"",Y,Y
+29,"Trinity Health",Midwest,nonprofit,Catholic,"Faith-based system (+ MediGold)",minor,N,"",Y,Y
+30,"Mount Sinai Health System",Northeast,nonprofit,none,"Academic medical center (Icahn)",none,N,"",Y,N
+31,"Mass General Brigham",Northeast,nonprofit,none,"Academic medical center (Harvard; MGH/BWH)",minor,N,"MGB Health Plan",Y,N
+32,"Henry Ford Health",Midwest,nonprofit,none,"Integrated payer-provider (HAP) + academic",material,N,"",Y,N
+33,"SSM Health",Midwest,nonprofit,Catholic,"Faith-based system (+ Dean Health Plan)",material,N,"",Y,Y
+34,"Indiana University Health",Midwest,nonprofit,none,"Academic medical center (IU SoM)",minor,Y,"",Y,N
+35,"Parkview Health",Midwest,nonprofit,none,"Secular regional IDN",minor,Y,"",Y,N
+36,"Ascension",Midwest,nonprofit,Catholic,"Faith-based system (national)",minor,N,"",Y,Y
+37,"Allina Health",Midwest,nonprofit,none,"Secular regional IDN",none,N,"",Y,N
+38,"Adventist Health",West,nonprofit,Adventist,"Faith-based system (CA/OR/WA/HI)",none,N,"",Y,Y
+39,"University Hospitals",Midwest,nonprofit,none,"Academic medical center (Case Western)",none,N,"",Y,N
+40,"Montefiore Health System",Northeast,nonprofit,none,"Academic medical center (Einstein) + safety-net",minor,Y,"",Y,N
