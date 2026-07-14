@@ -21,6 +21,10 @@ Boost your OR's first-case on-time performance from 65% to 85%+
 The open dataset behind the Q1 2026 margin analysis: 40 health systems by 38 columns (financials, ownership, payer mix, digital maturity). Re-cut the 28.6-point spread yourself and see what it actually measures.
 - [View Toolkit →](./29_hospital_margin_ranking)
 
+### 📊 Issue #34: The Open EHR Experiment, Part 1: The Bar
+A 62-requirement EHR evaluation matrix for a multi-site health system: hard safety gates that do not average away, a five-level evidence ladder, and 12 end-to-end test journeys. Built to score an open-source stack; works just as well on the vendors you already evaluate.
+- [View Toolkit →](./34_open_ehr_requirements)
+
 *More issues coming soon!*
 
 ## How to Use
