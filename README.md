@@ -26,7 +26,7 @@ A 62-requirement EHR evaluation matrix for a multi-site health system: hard safe
 - [View Toolkit →](./34_open_ehr_requirements)
 
 ### 📊 Issue #35: The Open EHR Experiment, Part 2: The Assembly
-The scored results: an assembled open-source EHR slice versus the Part 1 bar. 47.8% weighted against a 60% evidence ceiling, 16 of 25 hard gates, all failures preregistered. Scored CSV, evidence index, OpenEMR crosswalk, the stack's compose file, and the simulated payer's full rule table.
+The scored results: an assembled open-source EHR slice versus the Part 1 bar. 34.5% strict weighted (post-audit; 35.4% attainable max, 60% theoretical ceiling), 16 of 25 hard gates, all failures preregistered, zero surprises across two collection runs. Scored CSV, evidence index, OpenEMR crosswalk, the stack's compose file, and the simulated payer's full rule table.
 - [View Toolkit →](./35_open_ehr_assembly)
 - [Interactive scoreboard →](https://vv-issue35-assembly.vercel.app)
 
