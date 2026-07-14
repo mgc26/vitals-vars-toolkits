@@ -1,0 +1,184 @@
+# Issue 35 "The Assembly" - LOCAL EVIDENCE ENVIRONMENT
+#
+# This is the controlled, offline evidence environment used to score the
+# requirements matrix and emit per-row evidence packets. It is NEVER the public
+# demo sandbox (that ships separately to Railway/Vercel in Task 11). Do not
+# expose these ports to the internet.
+#
+# Images are pinned by multi-arch OCI index digest for reproducibility. The
+# human-readable tag is kept alongside each digest. Digests are recorded in
+# pin.lock; re-pull by tag and re-run pin.lock's refresh note to update.
+#
+# Base configuration derived from Medplum's published self-host compose:
+#   https://raw.githubusercontent.com/medplum/medplum/main/docker-compose.full-stack.yml
+# Credentials and host ports are parameterized so this file carries no secrets;
+# defaults are Medplum's documented local-dev values (safe only offline).
+
+services:
+  # --- PostgreSQL: Medplum's clinical + RCM datastore -----------------------
+  postgres:
+    image: postgres:16@sha256:eb4759788a2182f08257135e61a34f2cfc3c2914079f3465d64ee62350f4d081
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER:-medplum}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-medplum}
+      - POSTGRES_DB=${POSTGRES_DB:-medplum}
+    volumes:
+      - medplum-postgres-data:/var/lib/postgresql/data
+    command:
+      # Command-line args instead of a postgres.conf to avoid extra setup.
+      - 'postgres'
+      - '-c'
+      - 'listen_addresses=*'
+      - '-c'
+      - 'statement_timeout=60000'
+      - '-c'
+      - 'default_transaction_isolation=REPEATABLE READ'
+      - '-c'
+      - 'shared_preload_libraries=pg_stat_statements,auto_explain'
+    ports:
+      - '${POSTGRES_PORT:-5432}:5432'
+    healthcheck:
+      test: ['CMD-SHELL', 'pg_isready -U ${POSTGRES_USER:-medplum}']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # --- Redis: Medplum cache + job queue -------------------------------------
+  redis:
+    image: redis:7@sha256:68d5960737091a28de5759e5a2624d26e60f59f704d9e3ef9f609bbf969add9c
+    restart: unless-stopped
+    command: redis-server --requirepass ${REDIS_PASSWORD:-medplum}
+    ports:
+      - '${REDIS_PORT:-6379}:6379'
+    healthcheck:
+      test: ['CMD', 'redis-cli', '-a', '${REDIS_PASSWORD:-medplum}', 'ping']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # --- Medplum server: the single clinical source of truth (FHIR API) -------
+  medplum-server:
+    image: medplum/medplum-server:5.1.26@sha256:908d8ef96f7a48ac79d686002ec5641041d8592111ef135536abf6d10726717a
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - '${MEDPLUM_SERVER_PORT:-8103}:8103'
+    command: ['env']
+    environment:
+      MEDPLUM_PORT: 8103
+      MEDPLUM_BASE_URL: 'http://localhost:8103/'
+      MEDPLUM_APP_BASE_URL: 'http://localhost:3000/'
+      MEDPLUM_STORAGE_BASE_URL: 'http://localhost:8103/storage/'
+
+      MEDPLUM_DATABASE_HOST: 'postgres'
+      MEDPLUM_DATABASE_PORT: 5432
+      MEDPLUM_DATABASE_DBNAME: '${POSTGRES_DB:-medplum}'
+      MEDPLUM_DATABASE_USERNAME: '${POSTGRES_USER:-medplum}'
+      MEDPLUM_DATABASE_PASSWORD: '${POSTGRES_PASSWORD:-medplum}'
+
+      MEDPLUM_REDIS_HOST: 'redis'
+      MEDPLUM_REDIS_PORT: 6379
+      MEDPLUM_REDIS_PASSWORD: '${REDIS_PASSWORD:-medplum}'
+
+      MEDPLUM_BINARY_STORAGE: 'file:./binary/'
+      MEDPLUM_SUPPORT_EMAIL: '"Medplum" <support@medplum.com>'
+      MEDPLUM_GOOGLE_CLIENT_ID: ''
+      MEDPLUM_GOOGLE_CLIENT_SECRET: ''
+      MEDPLUM_RECAPTCHA_SITE_KEY: ''
+      MEDPLUM_RECAPTCHA_SECRET_KEY: ''
+      MEDPLUM_MAX_JSON_SIZE: '1mb'
+      MEDPLUM_MAX_BATCH_SIZE: '50mb'
+      MEDPLUM_BOT_LAMBDA_ROLE_ARN: ''
+      MEDPLUM_BOT_LAMBDA_LAYER_NAME: 'medplum-bot-layer'
+      MEDPLUM_VM_CONTEXT_BOTS_ENABLED: 'true'
+      MEDPLUM_DEFAULT_BOT_RUNTIME_VERSION: 'vmcontext'
+      MEDPLUM_ALLOWED_ORIGINS: '*'
+      MEDPLUM_INTROSPECTION_ENABLED: 'true'
+      MEDPLUM_SHUTDOWN_TIMEOUT_MILLISECONDS: 30000
+    healthcheck:
+      # This image ships no curl/wget, so use Node's fetch for the probe.
+      test:
+        [
+          'CMD',
+          'node',
+          '-e',
+          'fetch("http://localhost:8103/healthcheck").then(r => r.json()).then(console.log).catch(() => { process.exit(1); })',
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  # --- Medplum app: the admin web console -----------------------------------
+  medplum-app:
+    image: medplum/medplum-app:5.1.26@sha256:f8600418eb67035bbfc8251f5261c212079ff88f797f0d1be82a614d9ac16e7c
+    restart: unless-stopped
+    depends_on:
+      medplum-server:
+        condition: service_healthy
+    ports:
+      - '${MEDPLUM_APP_PORT:-3000}:3000'
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost:3000']
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # --- Mock payer "SIMULATED PAYER" (Codex workstream, code/payer-sim) -------
+  # Behind the "full" profile so the core stack boots without it. The build
+  # context may not exist yet while Codex is still building it; core up.sh
+  # never touches this service. Bring it in with:  docker compose --profile full up -d
+  payer-sim:
+    profiles: ['full']
+    build:
+      context: ../payer-sim
+    image: issue35/payer-sim:local
+    restart: unless-stopped
+    ports:
+      - '${PAYER_SIM_PORT:-8090}:8090'
+    environment:
+      PAYER_SIM_PORT: 8090
+    healthcheck:
+      test: ['CMD-SHELL', 'python -c "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen(''http://localhost:8090/health'').status==200 else 1)" || exit 1']
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+  # --- OIE ADT interface leg (Interface workstream, code/oie) ----------------
+  # NO OFFICIAL CONTAINER IMAGE and NO DOCKERFILE in the released source exist
+  # for Open Integration Engine v4.6.0 (released 2026-07-09; native installers
+  # only, no image on Docker Hub or ghcr.io; the v4.6.0 tag is the Ant-based
+  # tree with no Dockerfile). The OIE ADT leg is therefore run NATIVELY by the
+  # interface workstream from the official release tarball; see code/oie
+  # (fetch_oie.sh + start_oie.sh) and README.md ("OIE: no official image").
+  #
+  # This service is intentionally left commented out: out of the box OIE is not
+  # a compose service. The block below only documents the port contract for the
+  # case where someone later containerizes OIE themselves (authoring their own
+  # Dockerfile around oie_unix_4_6_0.tar.gz). If enabled, the admin port MUST
+  # stay bound to 127.0.0.1 ONLY so the OIE admin console is never reachable
+  # off-host, even inside the evidence environment.
+  #
+  # oie:
+  #   image: issue35/oie:v4.6.0-local   # you must build this yourself; no upstream image
+  #   restart: unless-stopped
+  #   ports:
+  #     - '127.0.0.1:${OIE_ADMIN_PORT:-8443}:8443'   # admin bound to localhost only
+  #   depends_on:
+  #     medplum-server:
+  #       condition: service_healthy
+  #   volumes:
+  #     - oie-appdata:/opt/engine/appdata
+  #   healthcheck:
+  #     test: ['CMD-SHELL', 'curl -fsk https://localhost:8443 || exit 1']
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 5
+
+volumes:
+  medplum-postgres-data:
+  # oie-appdata:   # uncomment together with the 'oie' service above
