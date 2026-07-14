@@ -1,4 +1,4 @@
-# The Assembly — Scored Results Toolkit (Issue 35)
+# The Assembly: Scored Results Toolkit (Issue 35)
 
 Part 2 of the Open EHR Experiment. Part 1's 62-requirement matrix
 (github.com/mgc26/vitals-vars-toolkits/tree/main/34_open_ehr_requirements), now SCORED
@@ -8,14 +8,14 @@ Integration Engine + a deterministic SIMULATED payer + Synthea patients).
 Interactive scoreboard: https://vv-issue35-assembly.vercel.app
 
 ## Files
-- `scored_matrix.csv` — all 62 rows with result, evidence level, limitation (simulated
+- `scored_matrix.csv`: all 62 rows with result, evidence level, limitation (simulated
   dependencies stated per row), in_scope flag
-- `evidence_index.md` — row-by-row index of the evidence packets
-- `openemr_crosswalk.csv` — the OpenEMR documentation crosswalk (claimed-only, never
+- `evidence_index.md`: row-by-row index of the evidence packets
+- `openemr_crosswalk.csv`: the OpenEMR documentation crosswalk (claimed-only, never
   tested, no weighted score; it is not a benchmark)
-- `docker-compose.yml` + `env.example` — the pinned evidence-environment stack (Medplum
+- `docker-compose.yml` + `env.example`: the pinned evidence-environment stack (Medplum
   server/app, Postgres, Redis)
-- `payer_rules.md` — the simulated payer's complete deterministic rule table (published
+- `payer_rules.md`: the simulated payer's complete deterministic rule table (published
   so nobody mistakes it for real payer behavior)
 
 ## The result, in one paragraph
