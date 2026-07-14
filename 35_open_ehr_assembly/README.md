@@ -20,11 +20,15 @@ Interactive scoreboard: https://vv-issue35-assembly.vercel.app
 
 ## The result, in one paragraph
 Preregistered before the build: with evidence capped at "demonstrated" (no load
-testing), the matrix cannot be passed. The scored run landed weighted 47.8% against a
-60.0% ceiling; 16 of 25 hard gates passed and all 9 failures were the preregistered
-ones (zero unexpected hard-gate failures). A full re-collection reproduced the result
-exactly. The three partial scores are genuine gaps in the open-source ecosystem: no
-demographic-correction engine, no referral state machine, no coding/CDI engine.
+testing), the matrix cannot be passed. The first scored pass said 47.8%; an
+adversarial audit of the method caught it crediting the 24 never-tested rows, the
+rules were tightened (no packet = no points; per-condition acceptance coverage
+enforced; several real code defects fixed), and the full re-collection landed the
+honest number: weighted 34.5% (302/875) against a 35.4% attainable maximum at this
+evidence scope (60.0% theoretical ceiling). The hard-gate disposition was identical
+in both runs: 16 of 25 hard gates passed, all 9 failures preregistered, zero
+unexpected. The three partial scores are genuine gaps in the open-source ecosystem:
+no demographic-correction engine, no referral state machine, no coding/CDI engine.
 
 ## What a pass does not mean
 Passing rows here is NOT ONC certification, HIPAA compliance, clinical validation, or
