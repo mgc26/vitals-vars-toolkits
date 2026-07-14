@@ -25,6 +25,11 @@ The open dataset behind the Q1 2026 margin analysis: 40 health systems by 38 col
 A 62-requirement EHR evaluation matrix for a multi-site health system: hard safety gates that do not average away, a five-level evidence ladder, and 12 end-to-end test journeys. Built to score an open-source stack; works just as well on the vendors you already evaluate.
 - [View Toolkit →](./34_open_ehr_requirements)
 
+### 📊 Issue #35: The Open EHR Experiment, Part 2: The Assembly
+The scored results: an assembled open-source EHR slice versus the Part 1 bar. 47.8% weighted against a 60% evidence ceiling, 16 of 25 hard gates, all failures preregistered. Scored CSV, evidence index, OpenEMR crosswalk, the stack's compose file, and the simulated payer's full rule table.
+- [View Toolkit →](./35_open_ehr_assembly)
+- [Interactive scoreboard →](https://vv-issue35-assembly.vercel.app)
+
 *More issues coming soon!*
 
 ## How to Use
