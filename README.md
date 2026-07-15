@@ -30,6 +30,11 @@ The scored results: an assembled open-source EHR slice versus the Part 1 bar. 34
 - [View Toolkit →](./35_open_ehr_assembly)
 - [Interactive scoreboard →](https://vv-issue35-assembly.vercel.app)
 
+### 📊 Issue #36: The Open EHR Experiment, Part 3: The Bill and the Risk
+The 5-year TCO + gated plausibility model. Verdict: implausible for all four buyer types in 2026 (least-implausible at greenfield, which still loses on cost). Regional IDN ~$115M to build vs ~$17M to stay put. Interactive calculator + downloadable sourced model.
+- [View Toolkit →](./36_open_ehr_bill)
+- [Interactive calculator →](https://vv-issue36-bill.vercel.app)
+
 *More issues coming soon!*
 
 ## How to Use
