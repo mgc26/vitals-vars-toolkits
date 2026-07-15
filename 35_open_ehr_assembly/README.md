@@ -26,8 +26,9 @@ rules were tightened (no packet = no points; per-condition acceptance coverage
 enforced; several real code defects fixed), and the full re-collection landed the
 honest number: weighted 34.5% (302/875) against a 35.4% attainable maximum at this
 evidence scope (60.0% theoretical ceiling). The hard-gate disposition was identical
-in both runs: 16 of 25 hard gates passed, all 9 failures preregistered, zero
-unexpected. The three partial scores are genuine gaps in the open-source ecosystem:
+in both runs: 16 of 25 hard gates passed; the other 9 were preregistered as unproven at this scope
+(no test ran; per rule 5 an unproven hard gate fails the evaluation), with zero
+unexpected failures. The three partial scores are genuine gaps in the open-source ecosystem:
 no demographic-correction engine, no referral state machine, no coding/CDI engine.
 
 ## What a pass does not mean
