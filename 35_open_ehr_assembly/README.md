@@ -6,6 +6,9 @@ against an assembled open-source stack (Medplum CDR + domain bots + slice UI + O
 Integration Engine + a deterministic SIMULATED payer + Synthea patients).
 
 Interactive scoreboard: https://vv-issue35-assembly.vercel.app
+Live synthetic-data demo of the assembled slice (same 34.5% build, read-mostly, not for
+clinical use; four features are labeled CONCEPT and are not scored): https://vv-issue35-ehr.vercel.app
+Part 3, the cost and plausibility calculator: https://vv-issue36-bill.vercel.app
 
 ## Files
 - `scored_matrix.csv`: all 62 rows with result, evidence level, limitation (simulated
