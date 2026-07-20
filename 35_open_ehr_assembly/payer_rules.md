@@ -5,7 +5,7 @@ It is published so nobody mistakes it for real payer behavior.
 
 # SIMULATED PAYER
 
-> **SIMULATED — NOT REAL PAYER POLICY.** These deterministic rules exist only for Issue 35 test fixtures. Do not use them for coverage, coding, billing, or clinical decisions.
+> **SIMULATED. NOT REAL PAYER POLICY.** These deterministic rules exist only for Issue 35 test fixtures. Do not use them for coverage, coding, billing, or clinical decisions.
 
 A Python 3.12 FastAPI service that returns deterministic X12 271, 999, 277CA-style, and 835 artifacts. The compose service name is `payer-sim`; it listens on port `8090`.
 
@@ -48,8 +48,8 @@ python -m app.rule_docs
 
 | Procedure | Outcome | Adjustment | Description |
 |---|---|---|---|
-| `99214` | clean_pay | — | Covered professional service; pay the full submitted charge. |
-| `99223` | clean_pay | — | Covered institutional service; pay the full submitted charge. |
+| `99214` | clean_pay | n/a | Covered professional service; pay the full submitted charge. |
+| `99223` | clean_pay | n/a | Covered institutional service; pay the full submitted charge. |
 | `99215` | deny | `CO-50` | Simulated non-covered service denial (CO-50). |
 | `99358` | deny | `CO-97` | Simulated bundled-service denial (CO-97). |
 | `81001` | partial_pay | `PR-1` | Pay 70%; assign 30% to simulated deductible (PR-1). |
