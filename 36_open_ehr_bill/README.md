@@ -4,8 +4,8 @@ Part 3 of the Open EHR Experiment. The 5-year TCO + gated plausibility model for
 open-source EHR (the Part 2 stack) across four buyer segments. Interactive calculator:
 https://vv-issue36-bill.vercel.app
 
-The Part 2 assembled slice this model prices is live as a synthetic-data demo (a narrow vertical slice, NOT a
-complete EHR; same 34.5% build, read-mostly, not for clinical use): https://vv-issue35-ehr.vercel.app
+The Part 2 assembled slice this model prices is a narrow vertical slice, NOT a complete EHR. Its full scored
+matrix, test procedures, and evidence packets are published at: https://vv-issue35-assembly.vercel.app
 
 ## The verdict (computed, pre-committed gates)
 Implausible for all four segments today. The economics gate (the computed, falsifiable swing
