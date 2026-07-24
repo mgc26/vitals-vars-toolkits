@@ -27,12 +27,17 @@ robustness_certificate.md).
 - cost_model.csv: every cost cell with tier (sourced/derived/estimate), low/high, unit.
 - robustness_certificate.md: economics verdict re-decided at each segment's build-favorable
   cost extreme (does an in-range estimate choice flip it?).
+- The full runnable model (cells, validator, TCO and gate logic) is public in the repo:
+  github.com/mgc26/Vitals-Vars under issues/36_open_ehr_bill/model/.
 
 ## Tiers + honesty
-- sourced: a public benchmark, cited. derived: computed from sourced primitives (recomputed
-  by the validator, not hand-typed). estimate: a stated-assumption range, not a point.
+- sourced: a public benchmark, cited. derived: recomputed by the validator from other cells
+  (not hand-typed); every derived line inherits at least one estimate input. estimate: a
+  stated-assumption range, not a point.
 - Most lines are estimate-tier because the refs give defensible RANGES, not single quotes;
-  that is the honest label and the disclosed judgment surface. The calculator exposes the
+  that is the honest label and the disclosed judgment surface. The governance gate's funded
+  support line uses Medplum's published hosted tiers as a floor because the self-hosted
+  Enterprise quote is not public (disclosed in the cell basis). The calculator exposes the
   drivers as sliders so you re-run with your own numbers.
 - This is a MODEL, not a quote: a 5-year range, not a promise.
 - The reasoned gates (safety, liability) are pre-committed editorial dispositions, committed to
